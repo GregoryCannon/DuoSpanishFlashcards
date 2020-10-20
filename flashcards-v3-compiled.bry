@@ -5,7 +5,7 @@ import requests
 
 # Brython imports
 from browser import document
-
+from browser.widgets.dialog import InfoDialog
 
 '''
 -------------
@@ -234,6 +234,8 @@ testList = ["maraca", "cabeza"]
 
 # print(processList(testList))
 print("hello world")
+
+InfoDialog("Hello", "C")
 
 
 def onClick():

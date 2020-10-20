@@ -7,10 +7,17 @@
     <!-- Import brython library to load python source into the site -->
     <script src="https://cdn.jsdelivr.net/npm/brython@3.8.10/brython.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/brython@3.8.10/brython_stdlib.js"></script>
+    <!-- <script type="text/python" src="flashcards-v3-compiled.bry"></script> -->
 
     <title>DuoVocab</title>
   </head>
   <body onload="brython(1)">
+    <script type="text/python">
+      from browser import document
+      from browser.widgets.dialog import InfoDialog
+
+      InfoDialog("Hello", "B")
+    </script>
     <script type="text/python" src="flashcards-v3-compiled.bry"></script>
 
     <div id="root">
