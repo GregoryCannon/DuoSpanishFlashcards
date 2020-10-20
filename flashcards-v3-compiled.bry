@@ -1,4 +1,4 @@
-import unidecode
+
 import spanish_labeler as spanishLabeler
 from typing import List
 import requests
