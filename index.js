@@ -51,15 +51,18 @@ if (area.addEventListener) {
 document.getElementById("submit-btn").onclick = function () {
   let outputStr = "";
   for (let i = 0; i < wordList.length; i++) {
-    if (checkBoxList[i].checked) {
-      outputStr += wordList[i] + "\n";
+    if (checkBoxList[i].checked && wordList[i]) {
+      outputStr += wordList[i] + ";";
     }
   }
 
-  for (extraWord of document.getElementById("additions").value.split("\n")) {
-    outputStr += extraWord + "\n";
+  for (extraWord of document.getElementById("additions").value.split(/,|\n/g)) {
+    outputStr += extraWord.trim() + ";";
   }
 
   copyToClipboard(outputStr);
   document.getElementById("success-text").hidden = false;
+  setTimeout(() => {
+    document.getElementById("success-text").hidden = true;
+  }, 2000);
 };
