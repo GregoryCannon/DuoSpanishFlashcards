@@ -1,56 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="index.css" />
-    <!-- Import brython library to load python source into the site -->
-    <script src="https://cdn.jsdelivr.net/npm/brython@3.8.10/brython.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/brython@3.8.10/brython_stdlib.js"></script>
-    <!-- <script type="text/python" src="flashcards-v3-compiled.bry"></script> -->
 
-    <title>DuoVocab</title>
-  </head>
-  <body onload="brython(1)">
-    <script type="text/python">
-      from browser import document
-      from browser.widgets.dialog import InfoDialog
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="index.css" />
 
-      InfoDialog("Hello", "B")
-    </script>
-    <script type="text/python" src="flashcards-v3-compiled.bry"></script>
+  <title>DuoVocab</title>
+</head>
 
-    <div id="root">
-      <textarea id="paste-area"></textarea>
-      <br />
-      <div id="columns">
-        <table id="table-root">
-          <thead>
-            <tr>
-              <td>
-                <input type="checkbox" id="apple" />
-                <label for="apple">Apple</label>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <input type="checkbox" id="banana" />
-                <label for="banana">Banana</label>
-              </td>
-            </tr>
-          </thead>
-        </table>
-        <div id="right-panel">
-          <div>Additional Words:</div>
-          <textarea id="additions"></textarea>
-          <br />
-          <br />
+<body>
+  <div id="root">
+    <div id="vocab-link"><a href="https://forum.duolingo.com/comment/31508369">Link to Duo Spanish Vocab</a></div>
+    <textarea placeholder="Paste a word list here (comma-separated)" id="paste-area"></textarea>
+    <br />
+    <div id="columns">
+      <table id="table-root">
+        <thead>
+          <tr>
+            <td>
+              <input type="checkbox" id="apple" />
+              <label for="apple">Apple</label>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="checkbox" id="banana" />
+              <label for="banana">Banana</label>
+            </td>
+          </tr>
+        </thead>
+      </table>
+      <div id="right-panel">
+        <div>Additional Words:</div>
+        <textarea placeholder="Enter additional words here, separated by commas or newlines" id="additions"></textarea>
+        <br />
+        <br />
 
-          <button id="submit-btn">Done</button>
-          <p id="success-text" hidden="true">Success! Copied to clipboard</p>
-        </div>
+        <button id="submit-btn">Done</button>
+        <p id="success-text" hidden="true">Success! Copied to clipboard</p>
       </div>
     </div>
-    <script src="index.js"></script>
-  </body>
+  </div>
+  <script src="index.js"></script>
+</body>
+
 </html>

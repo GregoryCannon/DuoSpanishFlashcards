@@ -10,7 +10,7 @@ function copyToClipboard(text) {
   document.body.removeChild(dummy);
 }
 
-document.getElementById("paste-area").onchange = function (event) {
+function onPasteAreaChange(event) {
   wordList = event.target.value.split(",");
   wordList = wordList.map((x) => x.trim());
   wordList.sort();
@@ -40,20 +40,26 @@ document.getElementById("paste-area").onchange = function (event) {
     tableRoot.appendChild(tableRow);
     checkBoxList.push(checkbox);
   }
+}
+var area = document.getElementById("paste-area");
+if (area.addEventListener) {
+  area.addEventListener("input", onPasteAreaChange, false);
+} else if (area.attachEvent) {
+  area.attachEvent("onpropertychange", onPasteAreaChange);
+}
+
+document.getElementById("submit-btn").onclick = function () {
+  let outputStr = "";
+  for (let i = 0; i < wordList.length; i++) {
+    if (checkBoxList[i].checked) {
+      outputStr += wordList[i] + "\n";
+    }
+  }
+
+  for (extraWord of document.getElementById("additions").value.split("\n")) {
+    outputStr += extraWord + "\n";
+  }
+
+  copyToClipboard(outputStr);
+  document.getElementById("success-text").hidden = false;
 };
-
-// document.getElementById("submit-btn").onclick = function () {
-//   let outputStr = "";
-//   for (let i = 0; i < wordList.length; i++) {
-//     if (checkBoxList[i].checked) {
-//       outputStr += wordList[i] + "\n";
-//     }
-//   }
-
-//   for (extraWord of document.getElementById("additions").value.split("\n")) {
-//     outputStr += extraWord + "\n";
-//   }
-
-//   copyToClipboard(outputStr);
-//   document.getElementById("success-text").hidden = false;
-// };

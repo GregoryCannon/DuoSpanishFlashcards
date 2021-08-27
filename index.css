@@ -43,6 +43,14 @@ textarea {
   box-shadow: 0 2px 6px 0px #0008;
 }
 
+#additions {
+  height: 100px;
+}
+
+#vocab-link {
+  margin-bottom: 20px;
+}
+
 #submit-btn:hover {
   box-shadow: 0 2px 6px 2px #0008;
   position: relative;

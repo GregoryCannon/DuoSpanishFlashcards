@@ -1,11 +1,6 @@
-
-import spanish_labeler as spanishLabeler
 from typing import List
 import requests
-
-# Brython imports
-from browser import document
-from browser.widgets.dialog import InfoDialog
+import unidecode
 
 '''
 -------------
@@ -46,7 +41,9 @@ def formatUrl(word, apiKey):
 
 
 def formatOutput(spanishText, englishText, partOfSpeech):
-    return f'"{spanishText}"\t"{partOfSpeech}"\t"{englishText}"'
+    if (len(partOfSpeech) > 0):
+        return f'"{spanishText}";"({partOfSpeech})\n{englishText}"\n'
+    return f'"{spanishText}";"{englishText}"\n'
 
 
 '''
@@ -225,21 +222,22 @@ def processList(rawWordList):
         vocabEntries += processWord(word.strip())
 
     for entry in vocabEntries:
+        if (len(entry.enText) == 0):
+            entry.enText = input(f"\nCouldn't find a definition for:\n     {entry.spText}\nPress enter to skip this word, or type a quick definition:\n")
+        if (len(entry.enText) == 0):
+            continue    # if the user skips the word, don't add it
         outputString += formatOutput(
             entry.spText, entry.enText, entry.partOfSpeech) + "\n"
     return outputString
 
 
-testList = ["maraca", "cabeza"]
+testList = input("Paste a semicolon-separated word list here:").split(";")
 
-# print(processList(testList))
-print("hello world")
+# testList = ["maraca", "cabeza"]
 
-InfoDialog("Hello", "C")
+result = processList(testList)
+print(result)
 
-
-def onClick():
-    print(processList(testList))
-
-
-document["submit-btn"].bind("click", onClick)
+outputFile = open("flashcards-output.txt", "w+")
+outputFile.truncate(0)
+outputFile.write(result)
